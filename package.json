@@ -1,4 +1,11 @@
 {
   "name": "nw-demo",
-  "main": "index.html"
+  "main": "index.html",
+  "window": {
+    "toolbar": false
+  },
+  "dependencies": {
+    "usb": "~0.2.3",
+    "express": "~3.4.7"
+  }
 }
