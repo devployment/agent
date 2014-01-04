@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>UHK Agent</title>
+</head>
+
+<body>
+    <button onclick="setReport(new Buffer([66]))">Left half bootloader jump</button><br>
+</body>
+
+<script src="agent.js"></script>
+
+<script>
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res){
+  res.send(document.getElementById('myText').value);
+});
+
+app.listen(3000);
+</script>
+
+</html>
