@@ -9,7 +9,7 @@ if (!device) {
     console.log('No device found');
     process.exit(1);
 }
-device.open();
+device.open();  // TODO: What if multiple keyboards are plugged in?
 
 var interface = device.interface(interfaceNumber);
 if (interface.isKernelDriverActive()) {
