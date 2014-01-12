@@ -11,20 +11,11 @@ if (!device) {
 }
 device.open();
 
-var interface = device.interface(2);
+var interface = device.interface(interfaceNumber);
 if (interface.isKernelDriverActive()) {
     interface.detachKernelDriver();
 }
 interface.claim();
-
-device.reset(function(error) {
-    if (error) {
-        console.log('Couldn\'t reset the device:', error);
-        process.exit(2);
-    }
-
-    usb_initialized();
-});
 
 function setReport(message)
 {
@@ -52,9 +43,4 @@ function readUsb()
             console.log('Read finished:', data);
         }
     });
-}
-
-function usb_initialized()
-{
-    console.log('usb initialized');
 }
