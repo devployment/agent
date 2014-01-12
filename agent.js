@@ -1,5 +1,15 @@
 var usb = require('usb');
 
+agentCommand = {
+    REENUMERATE: 66
+};
+
+reenumerateAs = {
+    KEYBOARD:      0,
+    CDCBOOTLOADER: 1,
+    USBTOSERIAL:   2
+};
+
 vendorId = 0x16D0;
 productId = 0x05EB;
 interfaceNumber = 2;
@@ -29,6 +39,11 @@ function setReport(message)
             console.log('Set Report(0x' +  message.toString('hex') + ') succeeded' );
         }
     );
+}
+
+function sendAgentCommand(command, arg)
+{
+    setReport(new Buffer([command, arg]));
 }
 
 function readUsb()
