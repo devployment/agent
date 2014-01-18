@@ -1,0 +1,4 @@
+# UDEV rule for accessing generic HID interface of the Ultimate Hacking Keyboard by non-root users.
+# To be placed into /etc/udev/rules.d and after that the keyboard should be reconnected.
+# TODO: Restore VID to 16d0 for the latest prototype.
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="16d1", ATTRS{idProduct}=="05e[abcd]", MODE:="0666"
