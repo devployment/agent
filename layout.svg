@@ -8,7 +8,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1052.3622"
-   height="744.09448"
+   height="496.06299"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -38,9 +38,9 @@
      inkscape:window-height="1027"
      id="namedview2472"
      showgrid="false"
-     inkscape:zoom="0.90509668"
-     inkscape:cx="395.73935"
-     inkscape:cy="370.11309"
+     inkscape:zoom="1.28"
+     inkscape:cx="522.11832"
+     inkscape:cy="287.61851"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -1853,25 +1853,25 @@
      inkscape:groupmode="layer"
      inkscape:label="0"
      id="g656"
-     transform="translate(0,-308.2677)" />
+     transform="translate(0,-556.29918)" />
   <g
      inkscape:groupmode="layer"
      inkscape:label="Sketch Geometry(PEC)"
      id="g802"
-     transform="translate(0,-308.2677)" />
+     transform="translate(0,-556.29918)" />
   <g
      inkscape:groupmode="layer"
      inkscape:label="Symbols(PEC)"
      id="g804"
-     transform="translate(0,-308.2677)" />
+     transform="translate(0,-556.29918)" />
   <g
      inkscape:groupmode="layer"
      inkscape:label="Visible Edges(PEC)"
      id="g806"
-     transform="translate(0,-308.2677)">
+     transform="translate(0,-556.29918)">
     <g
        id="left-parts"
-       transform="translate(234.8729,957.61022)"
+       transform="translate(235.84371,1088.7088)"
        style="fill:#333333;fill-opacity:1"
        inkscape:label="">
       <path
@@ -2210,7 +2210,7 @@
     <g
        id="right-parts"
        style="fill:#333333;fill-opacity:1"
-       transform="translate(57.70772,957.61101)"
+       transform="translate(58.678533,1088.7096)"
        inkscape:label="">
       <path
          id="path2336"
@@ -2579,5 +2579,5 @@
      inkscape:groupmode="layer"
      inkscape:label="Defpoints"
      id="g2470"
-     transform="translate(0,-308.2677)" />
+     transform="translate(0,-556.29918)" />
 </svg>
