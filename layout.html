@@ -4,21 +4,39 @@
 <title>UHK layout</title>
 </head>
 <body>
-<!--embed type="image/svg+xml" src="layout.svg" id="layout" /-->
-<div id="layout2"></div>
+<div id="layout"></div>
 <script src="components/jquery/dist/jquery.min.js"></script>
 <script src="components/svg.js/dist/svg.min.js"></script>
 <script src="svg.parser.min.js"></script>
 <script src="components/svg.import.js/svg.import.min.js"></script>
 <script>
-var l;
+var root, layout;
+
+var fontSize = 30;
+var keycapHeight = 63.779526;
+var fontHeight = 35.578125;
+
+var labelGap = (keycapHeight - fontHeight) / 2;
+
 $.get('layout.svg', function(data) {
-    var layout2 = SVG('layout2');
     var serializer = new XMLSerializer();
-    var serialized = serializer.serializeToString(data);
-    console.log(serialized);
-    l=layout2.svg( serialized );
-    //layout.get('a1').fill('red');
+    var rawSvg = serializer.serializeToString(data);
+    root = SVG('layout').svg(rawSvg);
+    layout = root.roots()[0];
+
 });
+
+function labelKeycap(keycapId, label)
+{
+    var fontSize = 30;
+    var key = root.get(keycapId);
+    var text = layout.
+        text(label).
+        font({family:'Helvetica', size:fontSize, anchor:'middle'}).
+        fill('#fff').
+        move(key.x()+key.width()/2, key.y()+labelGap).
+        addTo(key.parent);
+}
+
 </script>
 </body>
