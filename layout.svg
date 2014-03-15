@@ -38,9 +38,9 @@
      inkscape:window-height="1027"
      id="namedview2472"
      showgrid="false"
-     inkscape:zoom="1.28"
-     inkscape:cx="522.11832"
-     inkscape:cy="287.61851"
+     inkscape:zoom="0.90509668"
+     inkscape:cx="549.88455"
+     inkscape:cy="268.23364"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -53,7 +53,8 @@
      inkscape:bbox-paths="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     units="mm" />
+     units="mm"
+     showborder="false" />
   <desc
      id="desc4">/home/laci/Dropbox/uhk/dxf/keys and case_dim_20140305.dxf - scale = 1.000000</desc>
   <defs
@@ -1871,7 +1872,7 @@
      transform="translate(0,-556.29918)">
     <g
        id="left-parts"
-       transform="translate(235.84371,1088.7088)"
+       transform="translate(221.57008,1101.7666)"
        style="fill:#333333;fill-opacity:1"
        inkscape:label="">
       <path
@@ -2210,7 +2211,7 @@
     <g
        id="right-parts"
        style="fill:#333333;fill-opacity:1"
-       transform="translate(58.678533,1088.7096)"
+       transform="translate(44.404903,1101.7674)"
        inkscape:label="">
       <path
          id="path2336"
