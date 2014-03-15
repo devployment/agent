@@ -8,8 +8,8 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    version="1.1"
-   width="1052.3622"
-   height="496.06299"
+   width="1024.3346"
+   height="471.36612"
    id="svg2">
   <desc
      id="desc4">/home/laci/Dropbox/uhk/dxf/keys and case_dim_20140305.dxf - scale = 1.000000</desc>
@@ -39,30 +39,30 @@
          style="stroke:#000000;stroke-width:0.5" />
     </marker>
     <pattern
-       y="0"
-       x="0"
-       width="8"
-       patternUnits="userSpaceOnUse"
+       height="8"
        id="Hatch"
-       height="8">
+       patternUnits="userSpaceOnUse"
+       width="8"
+       x="0"
+       y="0">
       <path
-         id="path12"
-         stroke-width="0.25"
-         stroke="#000000"
+         d="M8 4 l-4,4"
          linecap="square"
-         d="M8 4 l-4,4" />
+         stroke="#000000"
+         stroke-width="0.25"
+         id="path12" />
       <path
-         id="path14"
-         stroke-width="0.25"
-         stroke="#000000"
+         d="M6 2 l-4,4"
          linecap="square"
-         d="M6 2 l-4,4" />
+         stroke="#000000"
+         stroke-width="0.25"
+         id="path14" />
       <path
-         id="path16"
-         stroke-width="0.25"
-         stroke="#000000"
+         d="M4 0 l-4,4"
          linecap="square"
-         d="M4 0 l-4,4" />
+         stroke="#000000"
+         stroke-width="0.25"
+         id="path16" />
     </pattern>
     <symbol
        id="*Model_Space" />
@@ -1462,16 +1462,16 @@
     </symbol>
   </defs>
   <g
-     transform="translate(0,-556.29918)"
+     transform="translate(0,-580.99607)"
      id="g656" />
   <g
-     transform="translate(0,-556.29918)"
+     transform="translate(0,-580.99607)"
      id="g802" />
   <g
-     transform="translate(0,-556.29918)"
+     transform="translate(0,-580.99607)"
      id="g804" />
   <g
-     transform="translate(0,-556.29918)"
+     transform="translate(0,-580.99607)"
      id="g806">
     <g
        transform="translate(221.57008,1101.7666)"
@@ -2102,6 +2102,6 @@
     </g>
   </g>
   <g
-     transform="translate(0,-556.29918)"
+     transform="translate(0,-580.99607)"
      id="g2470" />
 </svg>
