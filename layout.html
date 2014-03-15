@@ -24,6 +24,9 @@ $.get('layout.svg', function(data) {
     root = SVG('layout').svg(rawSvg);
     layout = root.roots()[0];
 
+    $.each(labels, function(i, n) {
+        labelKeycap(i, n);
+    });
 });
 
 function labelKeycap(keycapId, label)
@@ -37,6 +40,74 @@ function labelKeycap(keycapId, label)
         move(key.x()+key.width()/2, key.y()+labelGap).
         addTo(key.parent);
 }
+
+var labels = {
+    'a1' : '`',
+    'a2' : '1',
+    'a3' : '2',
+    'a4' : '3',
+    'a5' : '4',
+    'a6' : '5',
+    'a7' : '6',
+    'a8' : '7',
+    'a9' : '8',
+    'a10': '9',
+    'a11': '0',
+    'a12': '-',
+    'a13': '=',
+    'a14': 'BS',
+    'b1' : 'Tab',
+    'b2' : 'Q',
+    'b3' : 'W',
+    'b4' : 'E',
+    'b5' : 'R',
+    'b6' : 'T',
+    'b7' : 'Y',
+    'b8' : 'U',
+    'b9' : 'I',
+    'b10': 'O',
+    'b11': 'P',
+    'b12': '[',
+    'b13': ']',
+    'b14': '\\',
+    'c1' : 'Caps',
+    'c2' : 'A',
+    'c3' : 'S',
+    'c4' : 'D',
+    'c5' : 'F',
+    'c6' : 'G',
+    'c7' : 'H',
+    'c8' : 'J',
+    'c9' : 'K',
+    'c10': 'L',
+    'c11': ';',
+    'c12': '\'',
+    'c13': 'Enter',
+    'd1' : 'Shift',
+    'd2' : 'Z',
+    'd3' : 'X',
+    'd4' : 'C',
+    'd5' : 'V',
+    'd6' : 'B',
+    'd7' : 'N',
+    'd8' : 'M',
+    'd9' : ',',
+    'd10': '.',
+    'd11': '/',
+    'd12': 'Shift',
+    'e1' : 'Sup',
+    'e2' : 'Ctrl',
+    'e3' : 'Alt',
+    'e4' : 'Fn',
+    'e5' : 'Mod',
+    'e6' : 'Space',
+    'e7' : 'Fn',
+    'e8' : 'Alt',
+    'e9' : 'Ctrl',
+    'e10': 'Super',
+    'f1' : 'Space',
+    'f2' : 'Mod',
+};
 
 </script>
 </body>
