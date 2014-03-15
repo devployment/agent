@@ -4,5 +4,21 @@
 <title>UHK layout</title>
 </head>
 <body>
-<embed type="image/svg+xml" src="layout.svg" />
+<!--embed type="image/svg+xml" src="layout.svg" id="layout" /-->
+<div id="layout2"></div>
+<script src="components/jquery/dist/jquery.min.js"></script>
+<script src="components/svg.js/dist/svg.min.js"></script>
+<script src="svg.parser.min.js"></script>
+<script src="components/svg.import.js/svg.import.min.js"></script>
+<script>
+var l;
+$.get('layout.svg', function(data) {
+    var layout2 = SVG('layout2');
+    var serializer = new XMLSerializer();
+    var serialized = serializer.serializeToString(data);
+    console.log(serialized);
+    l=layout2.svg( serialized );
+    //layout.get('a1').fill('red');
+});
+</script>
 </body>
