@@ -37,7 +37,7 @@ $.get('layout.svg', function(data) {
     labelGap = (keycapHeight - fontHeight) / 2;
     bottomLabelGap = (bottomKeycapHeight - fontHeight) / 2;
 
-    $.each(labels, function(i, n) {
+    $.each(modLayer, function(i, n) {
         labelKeycap(i, n);
     });
 });
@@ -75,7 +75,7 @@ function mmToSvgUnit(mm)
     return (keycapHeight / keycapHeightInMm) * mm;
 }
 
-var labels = {
+var baseLayer = {
     'a1' : '`',
     'a2' : '1',
     'a3' : '2',
@@ -142,6 +142,35 @@ var labels = {
     'f1' : 'Space',
     'f2' : 'Mod',
 };
+
+var modLayer = {
+    'a1' : 'Esc',
+    'a2' : 'F1',
+    'a3' : 'F2',
+    'a4' : 'F3',
+    'a5' : 'F4',
+    'a6' : 'F5',
+    'a7' : 'F6',
+    'a8' : 'F7',
+    'a9' : 'F8',
+    'a10': 'F9',
+    'a11': 'F10',
+    'b2' : 'close\ntab',
+    'b3' : 'prev\ntab',
+    'b4' : 'new\ntab',
+    'b5' : 'next\ntab',
+    'b7' : 'PgUp',
+    'b8' : 'Home',
+    'b9' : '↑',
+    'b10': 'End',
+    'b11': 'Delete',
+    'c4' : 'Alt\nTab',
+    'c7' : 'PgDn',
+    'c8' : '←',
+    'c9' : '↓',
+    'c10': '→',
+    'c11': 'Insert',
+}
 
 </script>
 </body>
