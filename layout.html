@@ -37,7 +37,7 @@ $.get('layout.svg', function(data) {
     labelGap = (keycapHeight - fontHeight) / 2;
     bottomLabelGap = (bottomKeycapHeight - fontHeight) / 2;
 
-    $.each(modLayer, function(i, n) {
+    $.each(fnLayer, function(i, n) {
         labelKeycap(i, n);
     });
 });
@@ -170,6 +170,16 @@ var modLayer = {
     'c9' : '↓',
     'c10': '→',
     'c11': 'Insert',
+}
+
+var fnLayer = {
+    'b8' : 'Play',
+    'b9' : 'Vol\nUp',
+    'b10': 'Pause',
+    'c8' : 'Prev\nTrack',
+    'c9' : 'Vol\nDown',
+    'c10': 'Next\nTrack',
+    'd9': 'Mute',
 }
 
 </script>
