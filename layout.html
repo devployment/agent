@@ -14,6 +14,7 @@ var root, layout;
 
 var fontSize = 30;
 var keycapHeight = 63.779526;
+var keycapHeightInMm = 18;
 var fontHeight = 35.578125;
 
 var labelGap = (keycapHeight - fontHeight) / 2;
@@ -39,6 +40,27 @@ function labelKeycap(keycapId, label)
         fill('#fff').
         move(key.x()+key.width()/2, key.y()+labelGap).
         addTo(key.parent);
+}
+
+function showOnlyKeycapTops()
+{
+    var shrinkBy = mmToSvgUnit(3);
+    $.each(labels, function(i, n) {
+        if (i.charAt(0) != 'f') {
+            var key = root.get(i);
+            key.width(key.width()-shrinkBy);
+            key.height(key.height()-shrinkBy);
+            key.x(key.x() + shrinkBy/2);
+            key.y(key.y() + shrinkBy/2);
+        }
+    });
+    SVG.get('left-case').hide();
+    SVG.get('right-case').hide();
+}
+
+function mmToSvgUnit(mm)
+{
+    return (keycapHeight / keycapHeightInMm) * mm;
 }
 
 var labels = {
