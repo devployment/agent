@@ -37,7 +37,7 @@ $.get('layout.svg', function(data) {
     labelGap = (keycapHeight - fontHeight) / 2;
     bottomLabelGap = (bottomKeycapHeight - fontHeight) / 2;
 
-    $.each(fnLayer, function(i, n) {
+    $.each(mouseLayer, function(i, n) {
         labelKeycap(i, n);
     });
 });
@@ -180,6 +180,16 @@ var fnLayer = {
     'c9' : 'Vol\nDown',
     'c10': 'Next\nTrack',
     'd9': 'Mute',
+}
+
+var mouseLayer = {
+    'c3' : 'right\nclick',
+    'c4' : 'middle\nclick',
+    'c5' : 'left\nclick',
+    'b9' : '↑',
+    'c8' : '←',
+    'c9' : '↓',
+    'c10': '→',
 }
 
 </script>
