@@ -14,10 +14,12 @@ var root, layout;
 
 var fontSize = 30;
 var keycapHeight = 63.779526;
+var bottomKeycapHeight = 41.667309
 var keycapHeightInMm = 18;
 var fontHeight = 35.578125;
 
 var labelGap = (keycapHeight - fontHeight) / 2;
+var bottomLabelGap = (bottomKeycapHeight - fontHeight) / 2;
 
 $.get('layout.svg', function(data) {
     var serializer = new XMLSerializer();
@@ -34,11 +36,12 @@ function labelKeycap(keycapId, label)
 {
     var fontSize = 30;
     var key = root.get(keycapId);
+    var labelGapY = keycapId.charAt(0) == 'f' ? bottomLabelGap : labelGap;
     var text = layout.
         text(label).
         font({family:'Helvetica', size:fontSize, anchor:'middle'}).
         fill('#fff').
-        move(key.x()+key.width()/2, key.y()+labelGap).
+        move(key.x()+key.width()/2, key.y()+labelGapY).
         addTo(key.parent);
 }
 
