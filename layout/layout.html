@@ -48,6 +48,11 @@ $.get('layout.svg', function(data) {
     $.each(layers[layer], function(i, n) {
         labelKeycap(i, n);
     });
+
+    var onlyKeycaps = getParameterByName('onlyKeycaps') == 'true';
+    if (onlyKeycaps) {
+        showOnlyKeycapTops();
+    }
 });
 
 function getParameterByName(name) {
@@ -80,7 +85,7 @@ function labelKeycap(keycapId, label)
 function showOnlyKeycapTops()
 {
     var shrinkBy = mmToSvgUnit(3);
-    $.each(labels, function(i, n) {
+    $.each(layers['base'], function(i, n) {
         if (i.charAt(0) != 'f') {
             var key = root.get(i);
             key.width(key.width()-shrinkBy);
@@ -95,7 +100,7 @@ function showOnlyKeycapTops()
 
 function mmToSvgUnit(mm)
 {
-    return (keycapHeight / keycapHeightInMm) * mm;
+    return (normalKeycapHeight / keycapHeightInMm) * mm;
 }
 
 var layers = {

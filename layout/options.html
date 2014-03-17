@@ -14,6 +14,10 @@
 <label for="layer-mouse">Mouse layer</label>
 <br>
 
+<input type="checkbox" id="only-keycaps">
+<label for="only-keycaps">show only keycaps</label>
+<br>
+
 <a href="#" id="svg-link">open svg in new tab</a>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -39,6 +43,7 @@ $(document).ready(function() {
     {
         return 'layout.html?' +
             'layer=' + $('input[name=layer]:checked').val() +
+            '&onlyKeycaps=' + $('#only-keycaps').is(':checked') +
             '&ts=' + new Date().getTime();
     }
 });
