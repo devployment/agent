@@ -14,10 +14,11 @@
 var root, layout;
 
 var fontSize = 19;
-var keycapHeight;
+var normalKeycapHeight;
 var bottomKeycapHeight;
 var keycapHeightInMm = 18;
-var fontHeight;
+var singleLineHeight;
+var doubleLineHeight;
 
 var labelGap;
 var bottomLabelGap;
@@ -29,13 +30,15 @@ $.get('layout.svg', function(data) {
     layout = root.roots()[0];
 
     var text = layout.text('A').font({family:'Helvetica', size:fontSize, anchor:'middle'}).addTo(SVG.get('left-parts'));
-    fontHeight = text.bbox().height;
+    singleLineHeight = text.bbox().height;
     text.remove();
 
-    keycapHeight = SVG.get('a1').height();
+    var text = layout.text('A\nA').font({family:'Helvetica', size:fontSize, anchor:'middle'}).addTo(SVG.get('left-parts'));
+    doubleLineHeight = text.bbox().height;
+    text.remove();
+
+    normalKeycapHeight = SVG.get('a1').height();
     bottomKeycapHeight = SVG.get('f1').height();
-    labelGap = (keycapHeight - fontHeight) / 2;
-    bottomLabelGap = (bottomKeycapHeight - fontHeight) / 2;
 
     var layer = getParameterByName('layer');
     if (!layer) {
@@ -57,13 +60,20 @@ function getParameterByName(name) {
 
 function labelKeycap(keycapId, label)
 {
+    var isKeyBottom = keycapId.charAt(0) == 'f';
+    var keycapHeight = isKeyBottom ? bottomKeycapHeight : normalKeycapHeight;
+
+    var hasLabelOneLine = label.indexOf('\n') === -1;
+    var lineHeight = hasLabelOneLine ? singleLineHeight : doubleLineHeight;
+
+    var labelGap = (keycapHeight - lineHeight) / 2;
+
     var key = root.get(keycapId);
-    var labelGapY = keycapId.charAt(0) == 'f' ? bottomLabelGap : labelGap;
     var text = layout.
         text(label).
         font({family:'Helvetica', size:fontSize, anchor:'middle'}).
         fill('#fff').
-        move(key.x()+key.width()/2, key.y()+labelGapY).
+        move(key.x()+key.width()/2, key.y()+labelGap).
         addTo(key.parent);
 }
 
