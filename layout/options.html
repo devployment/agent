@@ -38,7 +38,8 @@ $(document).ready(function() {
     function getDisplayUrl()
     {
         return 'layout.html?' +
-            'layer=' + $('input[name=layer]:checked').val();
+            'layer=' + $('input[name=layer]:checked').val() +
+            '&ts=' + new Date().getTime();
     }
 });
 </script>
