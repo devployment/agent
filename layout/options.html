@@ -18,6 +18,7 @@
 <label for="only-keycaps">show only keycaps</label>
 <br>
 
+<button id='reload-button'>reload</button>
 <a href="#" id="svg-link">open svg in new tab</a>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -25,6 +26,10 @@
 <script>
 $(document).ready(function() {
     $('input').change(function() {
+        updateLayout();
+    });
+
+    $('#reload-button').click(function() {
         updateLayout();
     });
 
