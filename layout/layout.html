@@ -11,17 +11,28 @@
 <script src="../svg.parser.min.js"></script>
 <script src="../components/svg.import.js/svg.import.min.js"></script>
 <script>
-var root, layout;
 
+var root, layout;
 var fontSize = 19;
 var normalKeycapHeight;
 var bottomKeycapHeight;
 var keycapHeightInMm = 18;
 var singleLineHeight;
 var doubleLineHeight;
-
 var labelGap;
 var bottomLabelGap;
+
+var keycapTopHeight = 14.76;
+var keycapTopWidth = 13;
+
+keycapOffsets = [
+    -1.252,
+    -1.363,
+    -1.448,
+    -1.539,
+    -1.539,
+    0,
+];
 
 $.get('layout.svg', function(data) {
     var serializer = new XMLSerializer();
@@ -84,14 +95,18 @@ function labelKeycap(keycapId, label)
 
 function showOnlyKeycapTops()
 {
-    var shrinkBy = mmToSvgUnit(3);
-    $.each(layers['base'], function(i, n) {
-        if (i.charAt(0) != 'f') {
-            var key = root.get(i);
-            key.width(key.width()-shrinkBy);
-            key.height(key.height()-shrinkBy);
-            key.x(key.x() + shrinkBy/2);
-            key.y(key.y() + shrinkBy/2);
+    $.each(layers['base'], function(keyId, n) {
+        if (keyId.charAt(0) != 'f') {
+            var key = root.get(keyId);
+            var keyWidthDifference = mmToSvgUnit(keycapHeightInMm-keycapTopWidth);
+            var keyHeightDifference = mmToSvgUnit(keycapHeightInMm-keycapTopHeight);
+            var rowNumber = keyIdToRowNumber(keyId);
+            var keyOffset = keycapOffsets[rowNumber];
+
+            key.width(key.width() - keyWidthDifference);
+            key.height(key.height() - keyHeightDifference);
+            key.x(key.x() + keyWidthDifference/2);
+            key.y(key.y() + keyHeightDifference/2 + keyOffset);
         }
     });
     SVG.get('left-case').hide();
@@ -101,6 +116,16 @@ function showOnlyKeycapTops()
 function mmToSvgUnit(mm)
 {
     return (normalKeycapHeight / keycapHeightInMm) * mm;
+}
+
+function keyIdToRowNumber(keyId)
+{
+    return keyId.charCodeAt(0) - 'a'.charCodeAt(0);
+}
+
+function isBottommostKey(keyId)
+{
+    return keyIdToRowNumber(keyId) == 5;
 }
 
 var layers = {
