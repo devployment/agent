@@ -211,12 +211,19 @@ function labelKey(keyId, label)
         SVG.get(keyId).fill('#800');
     }
 
+    var offset = 0;
+    if (view == 'print-with-keycaps') {
+        var rowNumber = keyIdToRowNumber(keyId);
+        offset = keycapOffsets[rowNumber];
+        offset = mmToSvgUnit(offset);
+    }
+
     var key = SVG.get(keyId);
     var text = layout.
         text(label).
         font({family:'Helvetica', size:fontSize, anchor:'middle'}).
         fill('#fff').
-        move(key.x()+key.width()/2, key.y()+labelGap).
+        move(key.x()+key.width()/2, key.y()+labelGap+offset).
         addTo(key.parent);
 }
 
