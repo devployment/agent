@@ -106,7 +106,7 @@ function showOnlyKeycapTops()
             var keyWidthDifference = mmToSvgUnit(keycapHeightInMm-keycapTopWidth);
             var keyHeightDifference = mmToSvgUnit(keycapHeightInMm-keycapTopHeight);
             var rowNumber = keyIdToRowNumber(keyId);
-            var keyOffset = keycapOffsets[rowNumber];
+            var keyOffset = mmToSvgUnit(keycapOffsets[rowNumber]);
 
             key.width(key.width() - keyWidthDifference);
             key.height(key.height() - keyHeightDifference);
