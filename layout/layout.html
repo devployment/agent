@@ -170,11 +170,12 @@ $.get('layout.svg', function(data) {
     var root = SVG('layout').svg(rawSvg);
     layout = root.roots()[0];
 
-    var text = layout.text('A').font({family:'Helvetica', size:fontSize, anchor:'middle'}).addTo(SVG.get('left-parts'));
+    var fontProperties = {family:'Helvetica', size:fontSize, anchor:'middle'};
+    var text = layout.text('A').font(fontProperties).addTo(SVG.get('left-parts'));
     singleLineHeight = text.bbox().height;
     text.remove();
 
-    var text = layout.text('A\nA').font({family:'Helvetica', size:fontSize, anchor:'middle'}).addTo(SVG.get('left-parts'));
+    var text = layout.text('A\nA').font(fontProperties).addTo(SVG.get('left-parts'));
     doubleLineHeight = text.bbox().height;
     text.remove();
 
@@ -187,7 +188,7 @@ $.get('layout.svg', function(data) {
     }
 
     $.each(layers[layer], function(keyId, label) {
-        labelKeycap(keyId, label);
+        labelKey(keyId, label);
     });
 
     var onlyKeycaps = getParameterByName('onlyKeycaps') == 'true';
@@ -196,15 +197,7 @@ $.get('layout.svg', function(data) {
     }
 });
 
-function getParameterByName(name) {
-    // Borrowed from http://stackoverflow.com/a/901144/1449117
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-function labelKeycap(keyId, label)
+function labelKey(keyId, label)
 {
     var keycapHeight = isBottommostKey(keyId) ? bottomKeycapHeight : normalKeycapHeight;
 
@@ -262,6 +255,14 @@ function keyIdToRowNumber(keyId)
 function isBottommostKey(keyId)
 {
     return keyIdToRowNumber(keyId) == 5;
+}
+
+function getParameterByName(name) {
+    // Borrowed from http://stackoverflow.com/a/901144/1449117
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 </script>
