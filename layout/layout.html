@@ -145,6 +145,7 @@ var singleLineHeight;
 var doubleLineHeight;
 var labelGap;
 var bottomLabelGap;
+var view = getParameterByName('view');
 
 // Constants
 
@@ -191,8 +192,7 @@ $.get('layout.svg', function(data) {
         labelKey(keyId, label);
     });
 
-    var onlyKeycaps = getParameterByName('onlyKeycaps') == 'true';
-    if (onlyKeycaps) {
+    if (view.indexOf('print-') == 0) {
         showOnlyKeycapTops();
     }
 });

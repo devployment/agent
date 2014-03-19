@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
 <body>
 
 <input type="radio" id="layer-base" name="layer" value="base" checked>
@@ -14,8 +12,12 @@
 <label for="layer-mouse">Mouse layer</label>
 <br>
 
-<input type="checkbox" id="only-keycaps">
-<label for="only-keycaps">show only keycaps</label>
+<input type="radio" id="view-schematic" name="view" value="schematic" checked>
+<label for="view-schematic">Schematic view</label>
+<input type="radio" id="view-print-with-keycaps" name="view" value="print-with-keycaps">
+<label for="view-print-with-keycaps">Print view with keycaps</label>
+<input type="radio" id="view-print-without-keycaps" name="view" value="print-without-keycaps">
+<label for="view-print-without-keycaps">Print view without keycaps</label>
 <br>
 
 <button id='reload-button'>reload</button>
@@ -48,7 +50,7 @@ $(document).ready(function() {
     {
         return 'layout.html?' +
             'layer=' + $('input[name=layer]:checked').val() +
-            '&onlyKeycaps=' + $('#only-keycaps').is(':checked') +
+            '&view=' + $('input[name=view]:checked').val() +
             '&ts=' + new Date().getTime();
     }
 });
