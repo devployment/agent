@@ -84,6 +84,11 @@ function labelKeycap(keycapId, label)
 
     var labelGap = (keycapHeight - lineHeight) / 2;
 
+    if (label.charAt(0) == '*') {
+        label = label.substr(1);
+        SVG.get(keycapId).fill('#800');
+    }
+
     var key = root.get(keycapId);
     var text = layout.
         text(label).
@@ -225,6 +230,8 @@ var layers = {
         'c9' : '↓',
         'c10': '→',
         'c11': 'Insert',
+        'e5' : '*Mod',
+        'f2' : '*Mod',
     },
     'fn': {
         'b8' : 'Play',
@@ -233,9 +240,12 @@ var layers = {
         'c8' : 'Prev\nTrack',
         'c9' : 'Vol\nDown',
         'c10': 'Next\nTrack',
-        'd9': 'Mute',
+        'd9' : 'Mute',
+        'e4' : '*Fn',
+        'e7' : '*Fn',
     },
     'mouse': {
+        'c1' : '*Mouse',
         'c3' : 'right\nclick',
         'c4' : 'middle\nclick',
         'c5' : 'left\nclick',
