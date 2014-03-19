@@ -138,11 +138,9 @@ var layers = {
 
 // Globals
 
-var root, layout;
-var fontSize = 19;
+var layout;
 var normalKeycapHeight;
 var bottomKeycapHeight;
-var keycapHeightInMm = 18;
 var singleLineHeight;
 var doubleLineHeight;
 var labelGap;
@@ -150,6 +148,8 @@ var bottomLabelGap;
 
 // Constants
 
+var fontSize = 19;
+var keycapHeightInMm = 18;
 var keycapTopHeight = 13.8;
 var keycapTopWidth = 12.5;
 
@@ -167,7 +167,7 @@ keycapOffsets = [
 $.get('layout.svg', function(data) {
     var serializer = new XMLSerializer();
     var rawSvg = serializer.serializeToString(data);
-    root = SVG('layout').svg(rawSvg);
+    var root = SVG('layout').svg(rawSvg);
     layout = root.roots()[0];
 
     var text = layout.text('A').font({family:'Helvetica', size:fontSize, anchor:'middle'}).addTo(SVG.get('left-parts'));
@@ -186,8 +186,8 @@ $.get('layout.svg', function(data) {
         layer = 'base';
     }
 
-    $.each(layers[layer], function(i, n) {
-        labelKeycap(i, n);
+    $.each(layers[layer], function(keyId, label) {
+        labelKeycap(keyId, label);
     });
 
     var onlyKeycaps = getParameterByName('onlyKeycaps') == 'true';
@@ -204,10 +204,9 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function labelKeycap(keycapId, label)
+function labelKeycap(keyId, label)
 {
-    var isKeyBottom = keycapId.charAt(0) == 'f';
-    var keycapHeight = isKeyBottom ? bottomKeycapHeight : normalKeycapHeight;
+    var keycapHeight = isBottommostKey(keyId) ? bottomKeycapHeight : normalKeycapHeight;
 
     var hasLabelOneLine = label.indexOf('\n') === -1;
     var lineHeight = hasLabelOneLine ? singleLineHeight : doubleLineHeight;
@@ -216,10 +215,10 @@ function labelKeycap(keycapId, label)
 
     if (label.charAt(0) == '*') {
         label = label.substr(1);
-        SVG.get(keycapId).fill('#800');
+        SVG.get(keyId).fill('#800');
     }
 
-    var key = root.get(keycapId);
+    var key = SVG.get(keyId);
     var text = layout.
         text(label).
         font({family:'Helvetica', size:fontSize, anchor:'middle'}).
@@ -232,7 +231,7 @@ function showOnlyKeycapTops()
 {
     $.each(layers['base'], function(keyId) {
         if (!isBottommostKey(keyId)) {
-            var key = root.get(keyId);
+            var key = SVG.get(keyId);
             var keyWidthDifference = mmToSvgUnit(keycapHeightInMm-keycapTopWidth);
             var keyHeightDifference = mmToSvgUnit(keycapHeightInMm-keycapTopHeight);
             var rowNumber = keyIdToRowNumber(keyId);
