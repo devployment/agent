@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 25.6 23.552"
+   version="1.1"
+   id="svg7674"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="capslock.svg">
+  <path
+     style="fill:#000000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;fill-opacity:1"
+     d="M 256 32 C 112 32 112 176 112 176 L 112 216 L 96 216 C 56 216 56 256 56 256 L 56 440 C 56 450.23169 56 480 96 480 L 416 480 C 456 480 456 440 456 440 L 456 256 C 456 216 416 216 416 216 L 400 216 L 400 176 C 400 176 400 32 256 32 z M 256 80 C 352 80 352 176 352 176 L 352 216 L 160 216 L 160 176 C 160 176 160 80 256 80 z M 237.15625 271.5625 L 276.4375 271.5625 L 326.9375 425.71875 L 293.34375 425.71875 L 282.84375 388 L 230.75 388 L 220.21875 425.71875 L 186.53125 425.71875 L 237.15625 271.5625 z M 256.78125 292.375 C 256.62925 293.1368 256.332 294.47082 255.875 296.375 C 255.494 298.2794 255.01565 300.43764 254.40625 302.875 C 253.79685 305.31262 253.10539 307.98058 252.34375 310.875 C 251.65815 313.69346 250.91795 316.47667 250.15625 319.21875 L 237.84375 362.65625 L 275.75 362.65625 L 263.4375 319.21875 C 262.6757 316.47667 261.88654 313.69346 261.125 310.875 C 260.4394 307.98058 259.7969 305.31262 259.1875 302.875 C 258.5781 300.43764 258.05075 298.27942 257.59375 296.375 C 257.21275 294.4708 256.93345 293.13684 256.78125 292.375 z "
+     transform="matrix(0.05,0,0,0.05,0,-1.024)"
+     id="path8212" />
+  <metadata
+     id="metadata7690">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs7688" />
+  <sodipodi:namedview
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview7686"
+     showgrid="true"
+     inkscape:zoom="1.8384776"
+     inkscape:cx="194.84502"
+     inkscape:cy="174.53871"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7674"
+     inkscape:snap-bbox="false"
+     inkscape:bbox-nodes="false"
+     inkscape:snap-global="true"
+     inkscape:snap-to-guides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid8200"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="8px"
+       spacingy="8px" />
+  </sodipodi:namedview>
+  <desc
+     id="desc7676">Ultimate Hacking Keyboard LED display (graphics layer, screen size)</desc>
+  <style
+     type="text/css"
+     id="style7678">
+    .icon {
+        fill: none;
+        stroke: white;
+        stroke-width: 0.4;
+        stroke-linejoin: round;
+    }
+
+    .invertedIcon {
+        fill: white;
+        stroke: black;
+        stroke-width: 0.4;
+        stroke-linejoin: round;
+    }
+
+    .segment {
+        fill: red;
+    }
+
+    text {
+        fill: black;
+        stroke-width: 0;
+        text-anchor: middle;
+        font-family: 'Liberation Mono';
+        font-weight: bold;
+    }
+
+    text.engravable {
+        fill: red;
+    }
+
+    .outline {
+        stroke-width: 0.05;
+        stroke: black;
+        fill: white;
+    }
+
+    .scale-outline {
+        stroke-width: 0.17707263979419;
+        stroke: black;
+        fill: white;
+    }
+
+    .led-outline {
+        stroke-width: 0.05;
+        stroke: black;
+        fill: lightgray;
+    }
+
+    .black {
+        fill: black;
+    }
+
+    .led {
+        fill: yellow;
+        stroke-width: 0;
+    }
+
+    .dimension-outline {
+        stroke-width: 0.05;
+        stroke: orange;
+    }
+
+    .dimensionText {
+        font-size: 0.5;
+    }
+</style>
+  <!--_______________________________________ Caps lock icon ______________________________________-->
+  <g
+     style="font-size:11.69999981px;font-weight:bold;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Liberation Mono"
+     id="text7684"
+     transform="translate(0.125,-0.09615385)" />
+</svg>
