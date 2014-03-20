@@ -3,8 +3,11 @@
 <head>
 <title>UHK layout</title>
 <meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<span class="icon-tab-15472"></span>
+<span class="icon-tab"></span>
 <div id="layout"></div>
 <script src="../components/jquery/dist/jquery.min.js"></script>
 <script src="../components/svg.js/dist/svg.min.js"></script>
@@ -94,10 +97,10 @@ var layers = {
         'a11': 'F10',
         'a12': 'F11',
         'a13': 'F12',
-        'b2' : 'close\ntab',
-        'b3' : 'prev\ntab',
-        'b4' : 'new\ntab',
-        'b5' : 'next\ntab',
+        'b2' : '[x',
+        'b3' : '[p',
+        'b4' : '[+',
+        'b5' : '[n',
         'b7' : 'PgUp',
         'b8' : 'Home',
         'b9' : '↑',
@@ -215,6 +218,14 @@ function labelKey(keyId, label)
         SVG.get(keyId).fill('#800');
     }
 
+    var font = 'Helvetica';
+    var currentFontSize = fontSize;
+    if (label.charAt(0) == '[') {
+        label = label.substr(1);
+        font = 'icomoon';
+        currentFontSize = 1.2*fontSize
+    }
+
     var offset = 0;
     if (view == 'print-with-keycaps') {
         var rowNumber = keyIdToRowNumber(keyId);
@@ -225,7 +236,7 @@ function labelKey(keyId, label)
     var key = SVG.get(keyId);
     var text = layout.
         text(label).
-        font({family:'Helvetica', size:fontSize, anchor:'middle'}).
+        font({family:font, size:currentFontSize, anchor:'middle'}).
         fill('#fff').
         move(key.x()+key.width()/2, key.y()+labelGap+offset).
         addTo(key.parent);
