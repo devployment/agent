@@ -45,9 +45,9 @@
      showgrid="true"
      inkscape:document-units="cm"
      inkscape:snap-bbox="true"
-     inkscape:zoom="0.921875"
-     inkscape:cx="421.84003"
-     inkscape:cy="96.490869"
+     inkscape:zoom="1.84375"
+     inkscape:cx="238.40449"
+     inkscape:cy="154.44394"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -66,15 +66,9 @@
   <g
      id="g3954">
     <path
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 16,256 384,0 0,176 -48,0 0,-128 -336,0 z"
-       id="path4759"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 16,304 0,176 384,0 0,-48 -336,0 0,-128 z"
-       id="path4761"
-       inkscape:connector-curvature="0" />
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 16 256 L 16 480 L 400 480 L 400 256 L 16 256 z M 64 304 L 352 304 L 352 432 L 64 432 L 64 304 z "
+       id="rect4784" />
     <path
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        d="m 112,208 336,0 0,176 48,0 0,-224 -384,0 z"
