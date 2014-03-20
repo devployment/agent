@@ -107,7 +107,7 @@ var layers = {
         'b10': 'End',
         'b11': 'Delete',
         'c2' : 'Caps\nLock',
-        'c4' : 'Alt\nTab',
+        'c4' : '[w',
         'c7' : 'PgDn',
         'c8' : '←',
         'c9' : '↓',
@@ -223,7 +223,7 @@ function labelKey(keyId, label)
     if (label.charAt(0) == '[') {
         label = label.substr(1);
         font = 'icomoon';
-        currentFontSize = 1.2*fontSize
+        currentFontSize = 1.3*fontSize
     }
 
     var offset = 0;
