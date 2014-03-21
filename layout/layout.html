@@ -160,6 +160,7 @@ var view = getParameterByName('view');
 // Constants
 
 var fontSize = 19;
+var fontFamily = 'Helvetica';
 var keycapHeightInMm = 18;
 var keycapTopHeight = 13.8;
 var keycapTopWidth = 12.5;
@@ -181,7 +182,7 @@ $.get('layout.svg', function(data) {
     var root = SVG('layout').svg(rawSvg);
     layout = root.roots()[0];
 
-    var fontProperties = {family:'Helvetica', size:fontSize, anchor:'middle'};
+    var fontProperties = {family:fontFamily, size:fontSize, anchor:'middle'};
     var text = layout.text('A').font(fontProperties).addTo(SVG.get('left-parts'));
     singleLineHeight = text.bbox().height;
     text.remove();
@@ -221,7 +222,7 @@ function labelKey(keyId, label)
         SVG.get(keyId).fill('#800');
     }
 
-    var font = 'Helvetica';
+    var font = fontFamily;
     var currentFontSize = fontSize;
     if (label.charAt(0) == '[') {
         label = label.substr(1);
