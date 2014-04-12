@@ -4,6 +4,8 @@
   "dependencies": {
     "svg.js": "~1.0.0-rc.6",
     "svg.import.js": "~1.0.1",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "svg.export.js": "git@github.com:wout/svg.export.js.git",
+    "FileSaver": "latest"
   }
 }

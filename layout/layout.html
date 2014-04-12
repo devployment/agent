@@ -13,6 +13,8 @@
 <script src="../components/svg.js/dist/svg.min.js"></script>
 <script src="../svg.parser.min.js"></script>
 <script src="../components/svg.import.js/svg.import.min.js"></script>
+<script src="../components/svg.export.js/svg.export.min.js"></script>
+<script src="../components/FileSaver/FileSaver.js"></script>
 <script>
 
 var layers = {
@@ -166,6 +168,8 @@ var doubleLineHeight;
 var labelGap;
 var bottomLabelGap;
 var view = getParameterByName('view');
+var action = getParameterByName('action');
+var filename = getParameterByName('filename');
 
 // Constants
 
@@ -216,6 +220,14 @@ $.get('layout.svg', function(data) {
     if (view.indexOf('print-') == 0) {
         showOnlyKeycapTops();
     }
+
+    if (action == 'save') {
+        var exported = layout.exportSvg({whitespace: '    '});
+        console.log(exported);
+        var blob = new Blob([exported], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, filename);
+    }
+
 });
 
 function labelKey(keyId, label)

@@ -22,36 +22,47 @@
 
 <button id='reload-button'>reload</button>
 <a href="#" id="svg-link">open svg in new tab</a>
+<br>
+
+<input id="filename" type="text">.svg
+<button id='save-button'>save</button>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script>
 $(document).ready(function() {
     $('input').change(function() {
-        updateLayout();
+        updateLayout('reload');
     });
 
     $('#reload-button').click(function() {
-        updateLayout();
+        updateLayout('reload');
     });
 
     $('#svg-link').click(function() {
-        window.open(getDisplayUrl(), '_blank');
+        window.open(getDisplayUrl('reload'), '_blank');
     });
 
-    updateLayout();
+    $('#save-button').click(function() {
+        updateLayout('save');
+    });
 
-    function updateLayout()
+    updateLayout('reload');
+
+    function updateLayout(action)
     {
-        top.frames["layout"].location = getDisplayUrl();
+        $('#filename').val($('input[name=layer]:checked').val() + '-' + $('input[name=view]:checked').val());
+        top.frames["layout"].location = getDisplayUrl(action);
     }
 
-    function getDisplayUrl()
+    function getDisplayUrl(action)
     {
         return 'layout.html?' +
             'layer=' + $('input[name=layer]:checked').val() +
             '&view=' + $('input[name=view]:checked').val() +
-            '&ts=' + new Date().getTime();
+            '&ts=' + new Date().getTime() +
+            '&action=' + action +
+            '&filename=' + $('#filename').val() + '.svg';
     }
 });
 </script>
