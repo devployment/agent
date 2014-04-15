@@ -2,11 +2,12 @@
   "name": "agent",
   "version": "0.0.0",
   "dependencies": {
-    "svg.js": "~1.0.0-rc.6",
-    "svg.import.js": "~1.0.1",
     "jquery": "~2.1.0",
+    "svg.js": "~1.0.0-rc.6",
+    "svg.parser.js": "git@github.com:wout/svg.parser.js.git",
+    "svg.import.js": "~1.0.1",
+    "svg.absorb.js": "git@github.com:wout/svg.absorb.js.git#~0.1.1",
     "svg.export.js": "git@github.com:wout/svg.export.js.git#c081b7980e82cf2e1958b78b7398fc83c3935eea",
-    "FileSaver": "latest",
-    "svg.absorb.js": "git@github.com:wout/svg.absorb.js.git#~0.1.1"
+    "FileSaver": "latest"
   }
 }
