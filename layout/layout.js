@@ -204,7 +204,6 @@ $.get('layout.svg', function(data) {
 
     if (action == 'save') {
         var exported = layout.exportSvg({whitespace: '    '});
-        console.log(exported);
         var blob = new Blob([exported], {type: "text/plain;charset=utf-8"});
         saveAs(blob, filename);
     }
