@@ -151,6 +151,11 @@ var bottomLabelGap;
 var view = getParameterByName('view');
 var action = getParameterByName('action');
 var filename = getParameterByName('filename');
+var layer = getParameterByName('layer');
+var textLabels = [];
+if (!layer) {
+    layer = 'base';
+}
 
 // Constants
 
@@ -189,17 +194,14 @@ $.get('layout.svg', function(data) {
     normalKeycapHeight = SVG.get('a1').height();
     bottomKeycapHeight = SVG.get('f1').height();
 
-    var layer = getParameterByName('layer');
-    if (!layer) {
-        layer = 'base';
-    }
-
     $.each(layers[layer], function(keyId, label) {
         labelKey(keyId, label);
     });
 
     if (view == 'print') {
-        showOnlyKeycapTops();
+        changeKeycapContours();
+        SVG.get('left-case').hide();
+        SVG.get('right-case').hide();
     }
 
     if (action == 'save') {
@@ -245,26 +247,70 @@ function labelKey(keyId, label)
         fill('#fff').
         move(key.x()+key.width()/2, key.y()+labelGap+offset).
         addTo(key.parent);
+
+    textLabels.push(text);
 }
 
-function showOnlyKeycapTops()
+function changeKeycapContours()
 {
     $.each(layers['base'], function(keyId) {
         if (!isBottommostKey(keyId)) {
-            var key = SVG.get(keyId);
-            var keyWidthDifference = mmToSvgUnit(keycapHeightInMm-keycapTopWidth);
-            var keyHeightDifference = mmToSvgUnit(keycapHeightInMm-keycapTopHeight);
-            var rowNumber = keyIdToRowNumber(keyId);
-            var keyOffset = mmToSvgUnit(keycapOffsets[rowNumber]);
-
-            key.width(key.width() - keyWidthDifference);
-            key.height(key.height() - keyHeightDifference);
-            key.x(key.x() + keyWidthDifference/2);
-            key.y(key.y() + keyHeightDifference/2 + keyOffset);
+            if (layer == 'mod') {
+                showKeycapFront(keyId);
+            } else {
+                showKeycapTop(keyId);
+            }
         }
     });
-    SVG.get('left-case').hide();
-    SVG.get('right-case').hide();
+
+    if (layer == 'mod') {
+        textLabels.forEach(function(textLabel) {
+            textLabel.clone();
+            textLabel.remove();
+        });
+    }
+}
+
+function showKeycapTop(keyId)
+{
+    var key = SVG.get(keyId);
+    var keyWidthDifference = mmToSvgUnit(keycapHeightInMm-keycapTopWidth);
+    var keyHeightDifference = mmToSvgUnit(keycapHeightInMm-keycapTopHeight);
+    var rowNumber = keyIdToRowNumber(keyId);
+    var keyOffset = mmToSvgUnit(keycapOffsets[rowNumber]);
+
+    key.width(key.width() - keyWidthDifference);
+    key.height(key.height() - keyHeightDifference);
+    key.x(key.x() + keyWidthDifference/2);
+    key.y(key.y() + keyHeightDifference/2 + keyOffset);
+}
+
+function showKeycapFront(keyId)
+{
+    var key = SVG.get(keyId);
+    var keyWidthDifference = mmToSvgUnit(keycapHeightInMm-keycapTopWidth);
+    var keyHeightDifference = mmToSvgUnit(keycapHeightInMm-keycapTopHeight);
+    var rowNumber = keyIdToRowNumber(keyId);
+    var keyOffset = mmToSvgUnit(keycapOffsets[rowNumber]);
+
+    var centerX = key.x() + key.width()/2;
+    var topWidth = key.width() - keyWidthDifference;
+    var bottomWidth = key.width();
+    var topLeft = centerX - topWidth/2;
+    var topRight = centerX + topWidth/2;
+    var bottomLeft = centerX - bottomWidth/2;
+    var bottomRight = centerX + bottomWidth/2;
+    var top = key.y() + mmToSvgUnit(3);
+    var bottom = top + mmToSvgUnit(9.32);
+
+    key.parent.polygon(
+        topLeft     + ',' + top    + ' ' +
+        topRight    + ',' + top    + ' ' +
+        bottomRight + ',' + bottom + ' ' +
+        bottomLeft  + ',' + bottom
+    );
+
+    key.remove();
 }
 
 // Utility functions
