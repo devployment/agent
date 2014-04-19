@@ -198,7 +198,7 @@ $.get('layout.svg', function(data) {
         labelKey(keyId, label);
     });
 
-    if (view.indexOf('print-') == 0) {
+    if (view == 'print') {
         showOnlyKeycapTops();
     }
 
@@ -207,7 +207,6 @@ $.get('layout.svg', function(data) {
         var blob = new Blob([exported], {type: "text/plain;charset=utf-8"});
         saveAs(blob, filename);
     }
-
 });
 
 function labelKey(keyId, label)
@@ -233,7 +232,7 @@ function labelKey(keyId, label)
     }
 
     var offset = 0;
-    if (view == 'print-with-keycaps') {
+    if (view == 'print') {
         var rowNumber = keyIdToRowNumber(keyId);
         offset = keycapOffsets[rowNumber];
         offset = mmToSvgUnit(offset);
