@@ -159,7 +159,7 @@ if (!layer) {
 
 // Constants
 
-var fontSize = 19;
+var fontSize;
 var fontFamily = 'Helvetica';
 var keycapHeightInMm = 18;
 var keycapTopHeight = 13.8;
@@ -181,6 +181,8 @@ $.get('layout.svg', function(data) {
     var rawSvg = serializer.serializeToString(data);
     var root = SVG('layout').svg(rawSvg);
     layout = root.roots()[0];
+
+    fontSize = view == 'schematic' ? 19 : 15;
 
     var fontProperties = {family:fontFamily, size:fontSize, anchor:'middle'};
     var text = layout.text('A').font(fontProperties).addTo(SVG.get('left-parts'));
