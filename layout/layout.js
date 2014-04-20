@@ -202,6 +202,9 @@ $.get('layout.svg', function(data) {
         changeKeycapContours();
         SVG.get('left-case').hide();
         SVG.get('right-case').hide();
+        SVG.get('root').fill('#000000');
+    } else {
+        SVG.get('root').fill('#333333');
     }
 
     if (action == 'save') {
