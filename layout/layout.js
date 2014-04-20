@@ -222,7 +222,9 @@ function labelKey(keyId, label)
 
     if (label.charAt(0) == '-') {
         label = label.substr(1);
-        SVG.get(keyId).fill('#800');
+        if (view == 'schematic') {
+            SVG.get(keyId).fill('#800');
+        }
     }
 
     var font = fontFamily;
@@ -265,7 +267,9 @@ function changeKeycapContours()
 
     if (layer == 'mod') {
         textLabels.forEach(function(textLabel) {
-            textLabel.clone();
+            if (textLabel.content != 'Mod') {
+                textLabel.clone();
+            }
             textLabel.remove();
         });
     }
@@ -293,6 +297,7 @@ function showKeycapFront(keyId)
     var rowNumber = keyIdToRowNumber(keyId);
     var keyOffset = mmToSvgUnit(keycapOffsets[rowNumber]);
 
+    var offsetY = 3;
     var centerX = key.x() + key.width()/2;
     var topWidth = key.width() - keyWidthDifference;
     var bottomWidth = key.width();
@@ -300,7 +305,7 @@ function showKeycapFront(keyId)
     var topRight = centerX + topWidth/2;
     var bottomLeft = centerX - bottomWidth/2;
     var bottomRight = centerX + bottomWidth/2;
-    var top = key.y() + mmToSvgUnit(3);
+    var top = key.y() + mmToSvgUnit(offsetY);
     var bottom = top + mmToSvgUnit(9.32);
 
     key.parent.polygon(
