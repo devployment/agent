@@ -227,19 +227,28 @@ function labelKey(keyId, label)
         }
     }
 
-    var font = fontFamily;
-    var currentFontSize = fontSize;
-    if (label.charAt(0) == '[') {
-        label = label.substr(1);
-        font = 'icomoon';
-        currentFontSize = 1.3*fontSize
-    }
-
     var offset = 0;
     if (view == 'print') {
         var rowNumber = keyIdToRowNumber(keyId);
         offset = keycapOffsets[rowNumber];
         offset = mmToSvgUnit(offset);
+    }
+
+    var font = fontFamily;
+    var isIcon = label.charAt(0) == '[';
+
+    var currentFontSize;
+    if (view=='print' && layer=='mod') {
+        currentFontSize = 12;
+        offset -= 5;
+    } else {
+        currentFontSize = fontSize;
+    }
+
+    if (isIcon) {
+        label = label.substr(1);
+        font = 'icomoon';
+        currentFontSize = 1.3*currentFontSize
     }
 
     var key = SVG.get(keyId);
