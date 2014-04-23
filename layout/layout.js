@@ -207,6 +207,7 @@ $.get('layout.svg', function(data) {
         SVG.get('root').fill('#000000');
     } else {
         SVG.get('root').fill('#333333');
+        SVG.get('layer-text').text(layer + ' layer');
     }
 
     if (action == 'save') {
