@@ -208,7 +208,9 @@ $.get('layout.svg', function(data) {
         SVG.get('layer-text').remove();
     } else {
         SVG.get('root').fill('#333333');
-        SVG.get('layer-text').text(layer + ' layer');
+        var layerText = layer + ' layer';
+        layerText = layerText.charAt(0).toUpperCase() + layerText.slice(1);
+        SVG.get('layer-text').text(layerText);
     }
 
     if (action == 'save') {
