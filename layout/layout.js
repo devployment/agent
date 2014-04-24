@@ -205,6 +205,7 @@ $.get('layout.svg', function(data) {
         SVG.get('left-case').hide();
         SVG.get('right-case').hide();
         SVG.get('root').fill('#000000');
+        SVG.get('layer-text').remove();
     } else {
         SVG.get('root').fill('#333333');
         SVG.get('layer-text').text(layer + ' layer');
