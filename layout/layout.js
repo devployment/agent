@@ -164,6 +164,7 @@ var fontFamily = 'Helvetica';
 var keycapHeightInMm = 18;
 var keycapTopHeight = 13.8;
 var keycapTopWidth = 12.5;
+var textLeading = 1.6;
 
 keycapOffsets = [
     -1.252,
@@ -189,7 +190,7 @@ $.get('layout.svg', function(data) {
     singleLineHeight = text.bbox().height;
     text.remove();
 
-    var text = layout.text('A\nA').font(fontProperties).addTo(SVG.get('left-parts'));
+    var text = layout.text('A\nA').leading(textLeading).font(fontProperties).addTo(SVG.get('left-parts'));
     doubleLineHeight = text.bbox().height;
     text.remove();
 
@@ -263,6 +264,7 @@ function labelKey(keyId, label)
     var key = SVG.get(keyId);
     var text = layout.
         text(label).
+        leading(textLeading).
         font({family:font, size:currentFontSize, anchor:'middle'}).
         fill('#fff').
         move(key.x()+key.width()/2, key.y()+labelGap+offset).
