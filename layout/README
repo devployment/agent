@@ -1,0 +1,4 @@
+When exporting the SVG no space should be included between the tspan elements in order for the texts to be consistently centered.
+After indenting the SVG this regular expression replacement should do the trick:
+From: (<tspan.*)\n *(.*)\n *(.*)\n.*(<tspan.*)\n *(.*)\n *(.*)
+To: $1$2$3$4$5$6
