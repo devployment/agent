@@ -129,13 +129,16 @@ var layers = {
         'c4' : 'middle\nclick',
         'c5' : 'left\nclick',
         'b7' : 'wheel\nup',
-        'b8' : 'history\nprev',
+        'b8' : 'button\n4',
         'b9' : '↑',
-        'b10': 'history\nnext',
+        'b10': 'button\n5',
+        'b11': 'button\n6',
         'c7' : 'wheel\ndown',
         'c8' : '←',
         'c9' : '↓',
         'c10': '→',
+        'e5': 'accelerate',
+        'f1': 'decelerate',
     }
 }
 
