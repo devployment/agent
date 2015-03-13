@@ -21,11 +21,11 @@ if (!device) {
 }
 device.open();  // TODO: What if multiple keyboards are plugged in?
 
-var interface = device.interface(interfaceNumber);
-if (interface.isKernelDriverActive()) {
-    interface.detachKernelDriver();
+var usbInterface = device.interface(interfaceNumber);
+if (usbInterface.isKernelDriverActive()) {
+    usbInterface.detachKernelDriver();
 }
-interface.claim();
+usbInterface.claim();
 
 function setReport(message)
 {
@@ -48,7 +48,7 @@ function sendAgentCommand(command, arg)
 
 function readUsb()
 {
-    endpoint = interface.endpoints[0];
+    endpoint = usbInterface.endpoints[0];
     readLength = 8;
     endpoint.transfer(readLength, function(error, data) {
         if (error) {
