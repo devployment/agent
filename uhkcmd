@@ -2,4 +2,3 @@
 
 var UhkConnection = require('./lib/UhkConnection');
 var uhkConnection = new UhkConnection();
-uhkConnection.test();
