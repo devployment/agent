@@ -2,3 +2,5 @@
 
 var UhkConnection = require('./lib/UhkConnection');
 var uhkConnection = new UhkConnection();
+uhkConnection.sendAgentCommand(UhkConnection.COMMANDS.WRITE_EEPROM);
+uhkConnection.readUsb();
