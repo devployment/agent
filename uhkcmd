@@ -2,6 +2,7 @@
 
 var UhkConnection = require('./lib/UhkConnection');
 var uhkConnection = new UhkConnection();
-uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, 11, function() {
-
+uhkConnection.connect(function() {
+    uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, 11, function() {
+    });
 });
