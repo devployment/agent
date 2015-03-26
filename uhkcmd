@@ -3,6 +3,13 @@
 var UhkConnection = require('./lib/UhkConnection');
 var uhkConnection = new UhkConnection();
 uhkConnection.connect(function() {
-    uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, 11, function() {
+    uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x11, 0x22, 0x33], function(error, data) {
+        console.log('request 1 succeeded');
+        uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x44, 0x55, 0x66], function(error, data) {
+            console.log('request 2 succeeded');
+            uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x77, 0x88, 0x99], function(error, data) {
+                console.log('request 3 succeeded');
+            });
+        });
     });
 });
