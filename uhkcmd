@@ -23,11 +23,30 @@ if (!R.contains(commandArg, commands)) {
 var command = UhkConnection.COMMANDS[commandArg.toUpperCase().replace(/-/g, '_')];
 
 var uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
+
 uhkConnection.connect(function() {
-    uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x11, 0x22, 0x33], function(error, data) {
-        uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x44, 0x55, 0x66], function(error, data) {
-            uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x77, 0x88, 0x99], function(error, data) {
+
+    switch (command) {
+        case UhkConnection.COMMANDS.READ_EEPROM:
+            uhkConnection.sendRequest(command, null, function(error, data) {});
+            break;
+        case UhkConnection.COMMANDS.WRITE_EEPROM:
+            var stringToBeSaved =  args.shift();
+            if (!stringToBeSaved) {
+                console.log('A string has to be specified to be saved into the EEPROM.');
+                process.exit(1);
+            }
+            uhkConnection.sendRequest(command, stringToBeSaved, function(error, data) {});
+            break;
+    }
+
+
+    /*
+        uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x11, 0x22, 0x33], function(error, data) {
+            uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x44, 0x55, 0x66], function(error, data) {
+                uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x77, 0x88, 0x99], function(error, data) {
+                });
             });
         });
-    });
+    */
 });
