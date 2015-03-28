@@ -1,6 +1,27 @@
 #!/usr/bin/env node
 
 var UhkConnection = require('./lib/UhkConnection');
+var R = require('ramda');
+var path = require('path');
+
+var commands = R.keys(UhkConnection.COMMANDS).map(function(command) {
+    return command.toLowerCase().replace(/_/g, '-');
+});
+
+var args = process.argv.slice(1);
+var programName = path.basename(args.shift());
+var commandArg = args.shift();
+
+if (!R.contains(commandArg, commands)) {
+    console.log(commandArg === undefined
+        ? 'No command has been specified.'
+        : 'Command "' + commandArg + '" is invalid.');
+    console.log('Valid commands are: ' + commands.join(', '));
+    process.exit(1);
+}
+
+var command = UhkConnection.COMMANDS[commandArg.toUpperCase().replace(/-/g, '_')];
+
 var uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
 uhkConnection.connect(function() {
     uhkConnection.sendRequest(UhkConnection.COMMANDS.WRITE_EEPROM, [0x11, 0x22, 0x33], function(error, data) {

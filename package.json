@@ -5,7 +5,9 @@
     "toolbar": false
   },
   "dependencies": {
-    "usb": "~0.2.3",
-    "express": "~3.4.7"
+    "express": "~3.4.7",
+    "ramda": "^0.13.0",
+    "underscore.string": "^3.0.3",
+    "usb": "~0.2.3"
   }
 }
