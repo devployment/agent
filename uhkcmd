@@ -13,10 +13,11 @@ var programName = path.basename(args.shift());
 var commandArg = args.shift();
 
 if (!R.contains(commandArg, commands)) {
+    console.log('Usage: ' + programName + ' COMMAND [ARG]');
     console.log(commandArg === undefined
         ? 'No command has been specified.'
         : 'Command "' + commandArg + '" is invalid.');
-    console.log('Valid commands are: ' + commands.join(', '));
+    console.log('Valid commands: ' + commands.join(', '));
     process.exit(1);
 }
 
