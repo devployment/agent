@@ -25,7 +25,11 @@ var command = UhkConnection.COMMANDS[commandArg.toUpperCase().replace(/-/g, '_')
 
 var uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
 
-uhkConnection.connect(function() {
+uhkConnection.connect(function(error) {
+
+    if (error) {
+        return console.log(error);
+    }
 
     switch (command) {
         case UhkConnection.COMMANDS.READ_EEPROM:
