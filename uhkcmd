@@ -1,13 +1,11 @@
 #!/usr/bin/env node
+'use strict';
 
 var UhkConnection = require('./lib/UhkConnection');
 var R = require('ramda');
 var path = require('path');
 
-var commands = R.keys(UhkConnection.COMMANDS).map(function(command) {
-    return command.toLowerCase().replace(/_/g, '-');
-});
-
+var commands = getTypistFriendlyObjectKeys(UhkConnection.COMMANDS);
 var args = process.argv.slice(1);
 var programName = path.basename(args.shift());
 var commandArg = args.shift();
@@ -21,7 +19,7 @@ if (!R.contains(commandArg, commands)) {
     process.exit(1);
 }
 
-var command = UhkConnection.COMMANDS[commandArg.toUpperCase().replace(/-/g, '_')];
+var command = UhkConnection.COMMANDS[getTypistUnfriendlyObjectKey(commandArg)];
 
 var uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
 
@@ -45,3 +43,15 @@ uhkConnection.connect(function(error) {
             break;
     }
 });
+
+// Helper functions
+
+function getTypistFriendlyObjectKeys(object) {
+    return R.keys(object).map(function(command) {
+        return command.toLowerCase().replace(/_/g, '-');
+    });
+}
+
+function getTypistUnfriendlyObjectKey(key) {
+    return key.toUpperCase().replace(/-/g, '_');
+}
