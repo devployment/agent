@@ -30,6 +30,21 @@ uhkConnection.connect(function(error) {
     }
 
     switch (command) {
+        case UhkConnection.COMMANDS.REENUMERATE:
+            var enumerationModeArg = args.shift();
+            var enumerationModes = getTypistFriendlyObjectKeys(UhkConnection.ENUMERATION_MODES);
+            if (!R.contains(enumerationModeArg, enumerationModes)) {
+                console.log('Usage: ' + programName + ' ' + commandArg + ' {' + enumerationModes.join(' | ') + '}');
+                console.log(enumerationModeArg === undefined
+                    ? 'No enumeration mode has been specified.'
+                    : 'Enumeration mode "' + enumerationModeArg + '" is invalid.');
+                process.exit(1);
+            }
+            var enumerationMode = UhkConnection.ENUMERATION_MODES[getTypistUnfriendlyObjectKey(enumerationModeArg)];
+            uhkConnection.sendRequest(command, enumerationMode, function(error, data) {
+                console.log('sent request');
+            }, false);
+            break;
         case UhkConnection.COMMANDS.READ_EEPROM:
             uhkConnection.sendRequest(command, null, function(error, data) {});
             break;
