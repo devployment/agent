@@ -16,7 +16,7 @@ if (!R.contains(commandArg, commands)) {
         ? 'No command has been specified.'
         : 'Command "' + commandArg + '" is invalid.');
     console.error('Valid commands: ' + commands.join(', '));
-    process.exit(1);
+    exitWithError();
 }
 
 var command = UhkConnection.COMMANDS[getTypistUnfriendlyObjectKey(commandArg)];
@@ -31,7 +31,7 @@ switch (command) {
             console.error(enumerationModeArg === undefined
                 ? 'No enumeration mode has been specified.'
                 : 'Enumeration mode "%s" is invalid.', enumerationModeArg);
-            process.exit(1);
+            exitWithError();
         }
         var enumerationMode = UhkConnection.ENUMERATION_MODES[getTypistUnfriendlyObjectKey(enumerationModeArg)];
         sendRequest(command, enumerationMode, function(error, data) {
@@ -45,7 +45,7 @@ switch (command) {
         var stringToBeSaved =  args.shift();
         if (!stringToBeSaved) {
             console.error('A string has to be specified to be saved into the EEPROM.');
-            process.exit(1);
+            exitWithError();
         }
         sendRequest(command, stringToBeSaved, function(error, data) {});
         break;
@@ -61,7 +61,7 @@ function sendRequest(command, arg, callback, shouldReceiveResponse) {
         uhkConnection.connect(function(error) {
             if (error) {
                 console.error(error);
-                process.exit(1);
+                exitWithError();
             }
 
             uhkConnection.sendRequest(command, arg, callback, shouldReceiveResponse);
@@ -77,4 +77,8 @@ function getTypistFriendlyObjectKeys(object) {
 
 function getTypistUnfriendlyObjectKey(key) {
     return key.toUpperCase().replace(/-/g, '_');
+}
+
+function exitWithError() {
+    process.exit(1);
 }
