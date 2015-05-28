@@ -5,7 +5,8 @@ var UhkConnection = require('./lib/UhkConnection');
 var R = require('ramda');
 var path = require('path');
 
-var commands = getTypistFriendlyObjectKeys(UhkConnection.COMMANDS);
+var ENUMERATION_MODE_IDS = R.pluck('id', UhkConnection.ENUMERATION_MODES);
+var commands = getTypistFriendlyObjectKeys(R.keys(UhkConnection.COMMANDS));
 var args = process.argv.slice(1);
 var programName = path.basename(args.shift());
 var commandArg = args.shift();
@@ -25,7 +26,7 @@ var uhkConnection;
 switch (command) {
     case UhkConnection.COMMANDS.REENUMERATE:
         var enumerationModeArg = args.shift();
-        var enumerationModes = getTypistFriendlyObjectKeys(UhkConnection.ENUMERATION_MODES);
+        var enumerationModes = getTypistFriendlyObjectKeys(ENUMERATION_MODE_IDS);
         if (!R.contains(enumerationModeArg, enumerationModes)) {
             console.error('Usage: %s %s {%s}', programName, commandArg, enumerationModes.join(' | '));
             console.error(enumerationModeArg === undefined
@@ -33,8 +34,9 @@ switch (command) {
                 : 'Enumeration mode "%s" is invalid.', enumerationModeArg);
             exitWithError();
         }
-        var enumerationMode = UhkConnection.ENUMERATION_MODES[getTypistUnfriendlyObjectKey(enumerationModeArg)];
-        sendRequest(command, enumerationMode, function(error, data) {
+        var enumerationMode = R.find(R.propEq('id', getTypistUnfriendlyObjectKey(enumerationModeArg)),
+                                     UhkConnection.ENUMERATION_MODES);
+        sendRequest(command, enumerationMode.enumerationId, function(error, data) {
             console.log('sent request');
         }, false);
         break;
@@ -70,7 +72,7 @@ function sendRequest(command, arg, callback, shouldReceiveResponse) {
 }
 
 function getTypistFriendlyObjectKeys(object) {
-    return R.keys(object).map(function(command) {
+    return object.map(function(command) {
         return command.toLowerCase().replace(/_/g, '-');
     });
 }
