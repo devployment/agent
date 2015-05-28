@@ -34,10 +34,10 @@ uhkConnection.connect(function(error) {
             var enumerationModeArg = args.shift();
             var enumerationModes = getTypistFriendlyObjectKeys(UhkConnection.ENUMERATION_MODES);
             if (!R.contains(enumerationModeArg, enumerationModes)) {
-                console.error('Usage: ' + programName + ' ' + commandArg + ' {' + enumerationModes.join(' | ') + '}');
+                console.error('Usage: %s %s {%s}', programName, commandArg, enumerationModes.join(' | '));
                 console.error(enumerationModeArg === undefined
                     ? 'No enumeration mode has been specified.'
-                    : 'Enumeration mode "' + enumerationModeArg + '" is invalid.');
+                    : 'Enumeration mode "%s" is invalid.', enumerationModeArg);
                 process.exit(1);
             }
             var enumerationMode = UhkConnection.ENUMERATION_MODES[getTypistUnfriendlyObjectKey(enumerationModeArg)];
