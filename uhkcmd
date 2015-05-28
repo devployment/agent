@@ -20,46 +20,54 @@ if (!R.contains(commandArg, commands)) {
 }
 
 var command = UhkConnection.COMMANDS[getTypistUnfriendlyObjectKey(commandArg)];
+var uhkConnection;
 
-var uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
-
-uhkConnection.connect(function(error) {
-
-    if (error) {
-        return console.log(error);
-    }
-
-    switch (command) {
-        case UhkConnection.COMMANDS.REENUMERATE:
-            var enumerationModeArg = args.shift();
-            var enumerationModes = getTypistFriendlyObjectKeys(UhkConnection.ENUMERATION_MODES);
-            if (!R.contains(enumerationModeArg, enumerationModes)) {
-                console.error('Usage: %s %s {%s}', programName, commandArg, enumerationModes.join(' | '));
-                console.error(enumerationModeArg === undefined
-                    ? 'No enumeration mode has been specified.'
-                    : 'Enumeration mode "%s" is invalid.', enumerationModeArg);
-                process.exit(1);
-            }
-            var enumerationMode = UhkConnection.ENUMERATION_MODES[getTypistUnfriendlyObjectKey(enumerationModeArg)];
-            uhkConnection.sendRequest(command, enumerationMode, function(error, data) {
-                console.log('sent request');
-            }, false);
-            break;
-        case UhkConnection.COMMANDS.READ_EEPROM:
-            uhkConnection.sendRequest(command, null, function(error, data) {});
-            break;
-        case UhkConnection.COMMANDS.WRITE_EEPROM:
-            var stringToBeSaved =  args.shift();
-            if (!stringToBeSaved) {
-                console.error('A string has to be specified to be saved into the EEPROM.');
-                process.exit(1);
-            }
-            uhkConnection.sendRequest(command, stringToBeSaved, function(error, data) {});
-            break;
-    }
-});
+switch (command) {
+    case UhkConnection.COMMANDS.REENUMERATE:
+        var enumerationModeArg = args.shift();
+        var enumerationModes = getTypistFriendlyObjectKeys(UhkConnection.ENUMERATION_MODES);
+        if (!R.contains(enumerationModeArg, enumerationModes)) {
+            console.error('Usage: %s %s {%s}', programName, commandArg, enumerationModes.join(' | '));
+            console.error(enumerationModeArg === undefined
+                ? 'No enumeration mode has been specified.'
+                : 'Enumeration mode "%s" is invalid.', enumerationModeArg);
+            process.exit(1);
+        }
+        var enumerationMode = UhkConnection.ENUMERATION_MODES[getTypistUnfriendlyObjectKey(enumerationModeArg)];
+        sendRequest(command, enumerationMode, function(error, data) {
+            console.log('sent request');
+        }, false);
+        break;
+    case UhkConnection.COMMANDS.READ_EEPROM:
+        sendRequest(command, null, function(error, data) {});
+        break;
+    case UhkConnection.COMMANDS.WRITE_EEPROM:
+        var stringToBeSaved =  args.shift();
+        if (!stringToBeSaved) {
+            console.error('A string has to be specified to be saved into the EEPROM.');
+            process.exit(1);
+        }
+        sendRequest(command, stringToBeSaved, function(error, data) {});
+        break;
+}
 
 // Helper functions
+
+function sendRequest(command, arg, callback, shouldReceiveResponse) {
+    if (uhkConnection) {
+        uhkConnection.sendRequest(command, arg, callback, shouldReceiveResponse);
+    } else {
+        uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
+        uhkConnection.connect(function(error) {
+            if (error) {
+                console.error(error);
+                process.exit(1);
+            }
+
+            uhkConnection.sendRequest(command, arg, callback, shouldReceiveResponse);
+        });
+    }
+}
 
 function getTypistFriendlyObjectKeys(object) {
     return R.keys(object).map(function(command) {
