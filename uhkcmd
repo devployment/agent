@@ -37,12 +37,11 @@ switch (command) {
         var enumerationMode = R.find(R.propEq('id', getTypistUnfriendlyObjectKey(enumerationModeArg)),
                                      UhkConnection.ENUMERATION_MODES);
         sendRequest(command, enumerationMode.enumerationId, function(error, data) {
-            console.log('Reenumerating the Ultimate Hacking Keyboard as ' + getTypistUnfriendlyObjectKey(enumerationMode.id));
+            console.log('Reenumerating the UHK in %s mode.', getTypistUnfriendlyObjectKey(enumerationMode.id));
             uhkConnection.waitUntilDisconnect(function() {}, function() {
-                console.log('Successfully disconnected the Ultimate Hacking Keyboard.');
+                console.log('Successfully disconnected the UHK.');
                 uhkConnection.connect();
             });
-            console.log('sent request');
         }, false);
         break;
     case UhkConnection.COMMANDS.READ_EEPROM:
@@ -64,7 +63,7 @@ function sendRequest(command, arg, callback, shouldReceiveResponse) {
     if (uhkConnection) {
         uhkConnection.sendRequest(command, arg, callback, shouldReceiveResponse);
     } else {
-        uhkConnection = new UhkConnection(UhkConnection.LOG_LEVELS.TRANSFER);
+        uhkConnection = new UhkConnection(/*UhkConnection.LOG_LEVELS.TRANSFER*/);
         uhkConnection.connect(function(error) {
             if (error) {
                 console.error(error);
