@@ -37,9 +37,9 @@ switch (command) {
         var enumerationMode = R.find(R.propEq('id', getTypistUnfriendlyObjectKey(enumerationModeArg)),
                                      UhkConnection.ENUMERATION_MODES);
         sendRequest(command, enumerationMode.enumerationId, function(error, data) {
-            console.log('Reenumerating the UHK in %s mode.', getTypistUnfriendlyObjectKey(enumerationMode.id));
+            console.log('Reenumerating the UHK in %s mode...', getTypistUnfriendlyObjectKey(enumerationMode.id));
             uhkConnection.waitUntilDisconnect(function() {}, function() {
-                console.log('Successfully disconnected the UHK.');
+                console.log('UHK disconnected.');
                 uhkConnection.connect();
             });
         }, false);
