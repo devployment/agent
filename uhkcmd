@@ -37,6 +37,11 @@ switch (command) {
         var enumerationMode = R.find(R.propEq('id', getTypistUnfriendlyObjectKey(enumerationModeArg)),
                                      UhkConnection.ENUMERATION_MODES);
         sendRequest(command, enumerationMode.enumerationId, function(error, data) {
+            console.log('Reenumerating the Ultimate Hacking Keyboard as ' + getTypistUnfriendlyObjectKey(enumerationMode.id));
+            uhkConnection.waitUntilDisconnect(function() {}, function() {
+                console.log('Successfully disconnected the Ultimate Hacking Keyboard.');
+                uhkConnection.connect();
+            });
             console.log('sent request');
         }, false);
         break;
