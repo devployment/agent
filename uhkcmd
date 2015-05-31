@@ -49,7 +49,7 @@ switch (command) {
             console.log('Reenumerating the UHK in %s mode...', getTypistUnfriendlyObjectKey(enumerationMode.id));
             uhkConnection.waitUntilDisconnect(function() {}, function() {
                 console.log('UHK disconnected.');
-                uhkConnection.connect();
+                uhkConnection.connect(function() {});
             });
         }, false);
         break;
