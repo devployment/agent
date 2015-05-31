@@ -24,6 +24,15 @@ var command = UhkConnection.COMMANDS[getTypistUnfriendlyObjectKey(commandArg)];
 var uhkConnection;
 
 switch (command) {
+    case UhkConnection.COMMANDS.DETECT:
+        uhkConnection = new UhkConnection(/*UhkConnection.LOG_LEVELS.TRANSFER*/);
+        uhkConnection.connect(function(error) {
+            if (error) {
+                console.error(error);
+                exitWithError();
+            }
+        });
+        break;
     case UhkConnection.COMMANDS.REENUMERATE:
         var enumerationModeArg = args.shift();
         var enumerationModes = getTypistFriendlyObjectKeys(ENUMERATION_MODE_IDS);
