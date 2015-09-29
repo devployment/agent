@@ -1,0 +1,14 @@
+{
+  "name": "agent-gui",
+  "version": "0.0.0",
+  "description": "UHK Agent is the configurator application of the Ultimate Hacking Keyboard.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPLv3",
+  "dependencies": {
+    "snapsvg": "~0.4.0"
+  }
+}
