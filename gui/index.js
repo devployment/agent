@@ -6,13 +6,10 @@ Snap.load('layer.svg', function(loadedFragment) {
         element.click(function() {
             var OUT_OF_VIEWPORT_COORDINATE = -1000000;
             var FONT_BASELINE_RATIO = 0.1;
-            var FONT_X_OFFSET = -8;
-
             var keyBoundingBox = this.node.getBoundingClientRect();
             var text = svg.text(OUT_OF_VIEWPORT_COORDINATE, OUT_OF_VIEWPORT_COORDINATE, 'x')
                           .attr({fill:'white', fontSize:'40'});
             var textBoundingBox = text.node.getBoundingClientRect();
-            console.log(textBoundingBox.width);
             text.attr({
                 x: keyBoundingBox.left + (keyBoundingBox.width - textBoundingBox.width)/2,
                 y: keyBoundingBox.top + keyBoundingBox.height/2 + FONT_BASELINE_RATIO*textBoundingBox.height
