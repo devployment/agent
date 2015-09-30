@@ -14,7 +14,7 @@ Snap.load('layer.svg', function(loadedFragment) {
             var textBoundingBox = text.node.getBoundingClientRect();
             console.log(textBoundingBox.width);
             text.attr({
-                x: keyBoundingBox.left + (keyBoundingBox.width - textBoundingBox.width)/2 + FONT_X_OFFSET,
+                x: keyBoundingBox.left + (keyBoundingBox.width - textBoundingBox.width)/2,
                 y: keyBoundingBox.top + keyBoundingBox.height/2 + FONT_BASELINE_RATIO*textBoundingBox.height
             });
         })

@@ -9,6 +9,8 @@
   "author": "",
   "license": "GPLv3",
   "dependencies": {
-    "snapsvg": "~0.4.0"
+    "snapsvg": "~0.4.0",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4"
   }
 }
