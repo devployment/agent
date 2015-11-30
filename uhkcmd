@@ -57,7 +57,7 @@ switch (command) {
         sendRequest(command, null, function(error, data) {});
         break;
     case UhkConnection.COMMANDS.WRITE_EEPROM:
-        var stringToBeSaved =  args.shift();
+        var stringToBeSaved = args.shift();
         if (!stringToBeSaved) {
             console.error('A string has to be specified to be saved into the EEPROM.');
             exitWithError();
