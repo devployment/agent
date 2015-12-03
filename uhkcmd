@@ -54,7 +54,9 @@ switch (command) {
         }, false);
         break;
     case UhkConnection.COMMANDS.READ_EEPROM:
-        sendRequest(command, null, function(error, data) {});
+        sendRequest(command, null, function(error, data) {
+            console.log(data);
+        });
         break;
     case UhkConnection.COMMANDS.WRITE_EEPROM:
         var stringToBeSaved = args.shift();
